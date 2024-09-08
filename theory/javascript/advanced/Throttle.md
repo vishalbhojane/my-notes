@@ -61,3 +61,35 @@ const throttledLogClick = person.sayName.bind(person)
 
 document.body.addEventListener('click', () => { person.sayName() })
 ```
+
+Advanced throttling function (Kyle Cook)
+
+```js
+function throttle(callback, delay = 1000) {
+    let shouldWait = false
+    let waitingArgs;
+    const timeoutFn = (...args) => {
+        if (waitingArgs == null) {
+            shouldWait = false;
+        } else {
+            callback(...waitingArgs);
+            waitingArgs = null;
+            setTimeout(timeoutFn, delay)
+        }
+    }
+    return (...args) => {
+        if (shouldWait) {
+            waitingArgs = args
+            return
+        }
+        callback(...args);
+        shouldWait = true;
+        setTimeout(timeoutFn, delay)
+    }
+}
+```
+
+#### Analogy
+Baby: Mom give me a piece of chocolate cake
+Mom: No you can get one, only after 1 hour
+(baby wont get a piece of cake no matter how many times she asked, but only after each hour)

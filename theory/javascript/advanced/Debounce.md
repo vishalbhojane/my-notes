@@ -52,3 +52,7 @@ const debouncedLogClick = person.sayName.bind(person)
 document.body.addEventListener('click', () => { person.sayName() })
 ```
 
+#### Analogy
+Baby: Mom give me a piece of chocolate cake, . . .Mom give me a piece of chocolate cake... mom give me...
+Mom: No, You will get a piece of cake only after 1 hour from LAST time you asked for one.
+
