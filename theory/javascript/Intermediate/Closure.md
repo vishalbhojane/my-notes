@@ -47,7 +47,7 @@ var res = x();
 res(); // we will get 100 as output
 ```
 
-#### Chaining Continues (See [[Composition]])
+#### Chaining Continues
 
 ```js
 function w() {

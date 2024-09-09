@@ -1,7 +1,6 @@
 ### Callback Queue
-stores functions that have been passed as arguments to asynchronous functions such as setTimeout()
-These functions are executed only after the Call Stack is empty,
-    meaning all synchronous functions have finished execution
+stores functions that have been passed as arguments to asynchronous functions such as `setTimeout()`
+These functions are executed only after the Call Stack is empty, meaning all synchronous functions have finished execution
 
 ### Microtask Queue
 used to store asynchronous operations that require immediate execution compared to regular callback functions
