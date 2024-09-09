@@ -13,97 +13,177 @@ Dequeue, now empty space can be reused
 
 ![[circular-queue-deque.jpg]]
 
-### Circular queue usage
-Clock
-Streaming data
-Traffic light
+Introduction to Circular Queue:
+- A Circular Queue is a linear data structure that follows the FIFO principle.
+- It's a variation of a regular queue where the last position is connected to the first position.
+- It efficiently uses memory by reusing empty spaces.
+- Main operations: enqueue, dequeue, isFull, isEmpty.
+- Also known as a Ring Buffer.
+
+Real-world examples of Circular Queue usage:
+1. CPU scheduling in operating systems
+2. Memory management in embedded systems
+3. Traffic light control systems
+4. Buffering for data streams (e.g., keyboard inputs)
+5. Implementing round-robin scheduling algorithms
 
 ### Implementation
 
+```
+CLASS CircularQueue
+  items = empty object
+  capacity = given capacity
+  currentLength = 0
+  rear = -1
+  front = -1
+
+  FUNCTION enqueue(element)
+    IF isFull() THEN
+      RETURN false
+    rear = (rear + 1) % capacity
+    items[rear] = element
+    INCREMENT currentLength
+    IF front is -1 THEN
+      front = rear
+    RETURN true
+
+  FUNCTION dequeue()
+    IF isEmpty() THEN
+      RETURN null
+    item = items[front]
+    DELETE items[front]
+    DECREMENT currentLength
+    IF isEmpty() THEN
+      front = -1
+      rear = -1
+    ELSE
+      front = (front + 1) % capacity
+    RETURN item
+
+  FUNCTION peek()
+    IF isEmpty() THEN
+      RETURN null
+    RETURN items[front]
+
+  FUNCTION isEmpty()
+    RETURN currentLength EQUALS 0
+
+  FUNCTION isFull()
+    RETURN currentLength EQUALS capacity
+
+  FUNCTION size()
+    RETURN currentLength
+
+  FUNCTION print()
+    IF isEmpty() THEN
+      PRINT "Queue is empty"
+    ELSE
+      Initialize empty string str
+      FOR i FROM front TO rear
+        APPEND items[i] AND space TO str
+      PRINT str
+
+END CLASS
+```
+
 ```js
 class CircularQueue {
-    constructor(capacity){
-        this.capacity = capacity
-        this.items = new Array(this.capacity)
-        this.rear = -1
-        this.front = -1
-        this.currentLength = 0
-    }
+  constructor(capacity) {
+    this.items = {};
+    this.capacity = capacity;
+    this.currentLength = 0;
+    this.rear = -1;
+    this.front = -1;
+  }
 
-    isFull(){
-        return this.currentLength === this.capacity
+  // Add element to the queue
+  enqueue(element) {
+    if (this.isFull()) {
+      console.log("Queue is full");
+      return false;
     }
+    this.rear = (this.rear + 1) % this.capacity;
+    this.items[this.rear] = element;
+    this.currentLength++;
+    if (this.front === -1) {
+      this.front = this.rear;
+    }
+    console.log(`${element} added to the queue`);
+    return true;
+  }
 
-    isEmpty(){
-        return this.currentLength === 0
+  // Remove and return the front element
+  dequeue() {
+    if (this.isEmpty()) {
+      console.log("Queue is empty");
+      return null;
     }
+    const item = this.items[this.front];
+    delete this.items[this.front];
+    this.currentLength--;
+    if (this.isEmpty()) {
+      this.front = -1;
+      this.rear = -1;
+    } else {
+      this.front = (this.front + 1) % this.capacity;
+    }
+    console.log(`${item} removed from the queue`);
+    return item;
+  }
 
-    size(){
-        return this.currentLength
+  // Return the front element without removing it
+  peek() {
+    if (this.isEmpty()) {
+      console.log("Queue is empty");
+      return null;
     }
+    return this.items[this.front];
+  }
 
-    enqueue(item){
-        if(this.isFull()){
-            return
-        }
-        this.rear = (this.rear + 1) % this.capacity
-        this.items[this.rear] = item
-        this.currentLength += 1
-        if(this.front === -1){
-            this.front = this.rear
-        }
-    }
+  // Check if the queue is empty
+  isEmpty() {
+    return this.currentLength === 0;
+  }
 
-    dequeue(){
-        if(this.isEmpty()){
-            return null
-        }
-        const item = this.items[this.front]
-        this.items[this.front] = null
-        this.front = (this.front + 1) % this.capacity
-        this.currentLength -= 1
-        if(this.isEmpty()){
-            this.front = -1
-            this.rear = -1
-        }
-        return item
-    }
+  // Check if the queue is full
+  isFull() {
+    return this.currentLength === this.capacity;
+  }
 
-    peek(){
-        if(this.isEmpty()){
-            return null
-        }
-        return this.items[this.front]
-    }
+  // Return the size of the queue
+  size() {
+    return this.currentLength;
+  }
 
-    print(){
-        if(this.isEmpty()){
-            console.log('Queue is empty')
-            return
-        }
-        let i
-        let str = ""
-        for(i = this.front; i !== this.rear; i = (i + 1) % this.capacity){
-            str += this.items[i] + " "
-        }
-        str += this.items[i] // appending last element, since loops exits on that condition
-        console.log(str);
+  // Print the queue elements
+  print() {
+    if (this.isEmpty()) {
+      console.log("Queue is empty");
+    } else {
+      let i;
+      let str = "";
+      for (i = this.front; i !== this.rear; i = (i + 1) % this.capacity) {
+        str += this.items[i] + " ";
+      }
+      str += this.items[i];
+      console.log(str);
     }
+  }
 }
 
+// Usage example
 const queue = new CircularQueue(5);
-console.log(queue.isEmpty());
 queue.enqueue(10);
 queue.enqueue(20);
 queue.enqueue(30);
 queue.enqueue(40);
 queue.enqueue(50);
-console.log(queue.size());
-queue.print();
-console.log(queue.isFull());
-console.log(queue.dequeue());
-console.log(queue.peek());
-queue.print();
+queue.print();  // Output: 10 20 30 40 50
+console.log(queue.dequeue());  // Output: 10 removed from the queue
 queue.enqueue(60);
-queue.print();
+queue.print();  // Output: 20 30 40 50 60
+console.log(queue.peek());  // Output: 20
+console.log(queue.size());  // Output: 5
 ```
+
+This implementation uses an object to store the queue elements and maintains front and rear pointers to keep track of the queue's state. The modulo operation `% capacity` is used to wrap around the queue, creating the circular behavior.
