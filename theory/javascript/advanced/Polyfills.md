@@ -2,9 +2,9 @@ A polyfill is a piece of code used to provide modern functionality on older brow
 
 See Examples
 [[forEach]]
-[[notes/problems/javascript/polyfills/array/Map|Map]]
-[[notes/problems/javascript/polyfills/array/Filter|Filter]]
-[[notes/problems/javascript/polyfills/array/Reduce|Reduce]]
+[[notes/problems/topics/polyfills/array/Map|Map]]
+[[notes/problems/topics/polyfills/array/Filter|Filter]]
+[[notes/problems/topics/polyfills/array/Reduce|Reduce]]
 [[Flat]]
 [[Call]]
 [[Apply]]
