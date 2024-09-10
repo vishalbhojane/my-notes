@@ -1,5 +1,9 @@
 Question: What does a doctype do?
-Answer: The doctype declaration tells the browser which version of HTML the page is using. It ensures that the document is parsed the same way by different browsers. For HTML5, it's simply <!DOCTYPE html>.
+Answer: The doctype declaration tells the browser which version of HTML the page is using. It ensures that the document is parsed the same way by different browsers. For HTML5, it's simply.
+
+```html
+<!DOCTYPE html>
+```
 
 Question: How do you serve a page with content in multiple languages?
 Answer: Use the lang attribute on the html tag and specify the language in the content. For example:
