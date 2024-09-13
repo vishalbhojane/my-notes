@@ -1,4 +1,4 @@
-Question: What are some advantages/disadvantages to testing your code?
+### Question: What are some advantages/disadvantages to testing your code?
 Answer:
 Advantages:
 - Catches bugs early in development
@@ -13,7 +13,7 @@ Disadvantages:
 - Can give false sense of security if not done properly
 - Requires maintenance as code evolves
 
-Question: What tools would you use to test your code's functionality?
+### Question: What tools would you use to test your code's functionality?
 Answer: Common testing tools include:
 - Jest for JavaScript unit and integration testing
 - Mocha and Chai for JavaScript testing
@@ -23,7 +23,7 @@ Answer: Common testing tools include:
 - JUnit for Java testing
 - Postman for API testing
 
-Question: What is the difference between a unit test and a functional/integration test?
+### Question: What is the difference between a unit test and a functional/integration test?
 Answer:
 Unit tests:
 - Test individual components or functions in isolation
@@ -36,7 +36,7 @@ Functional/Integration tests:
 - Often involve testing through the UI or API
 - Take longer to run and are more complex to set up
 
-Question: What is the purpose of a code style linting tool?
+### Question: What is the purpose of a code style linting tool?
 Answer: A code style linting tool:
 - Enforces consistent coding style across a project
 - Identifies potential errors or bad practices
@@ -46,7 +46,7 @@ Answer: A code style linting tool:
 
 Examples include ESLint for JavaScript, Pylint for Python, and RuboCop for Ruby.
 
-Question: What are some of the testing best practices?
+### Question: What are some of the testing best practices?
 Answer:
 1. Write tests before or alongside code (Test-Driven Development)
 2. Keep tests simple, readable, and maintainable

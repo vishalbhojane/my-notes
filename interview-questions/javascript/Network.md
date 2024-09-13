@@ -1,11 +1,11 @@
-Question: Traditionally, why has it been better to serve site assets from multiple domains?
+### Question: Traditionally, why has it been better to serve site assets from multiple domains?
 Answer: Serving assets from multiple domains:
 1. Increases concurrent downloads (browsers limit connections per domain)
 2. Allows for cookie-free domains for static assets
 3. Enables CDN usage for global content delivery
 4. Potentially improves DNS resolution time
 
-Question: Do your best to describe the process from the time you type in a website's URL to it finishing loading on your screen.
+### Question: Do your best to describe the process from the time you type in a website's URL to it finishing loading on your screen.
 Answer: 
 1. DNS lookup to resolve domain to IP address
 2. TCP connection established with server
@@ -19,7 +19,7 @@ Answer:
 10. Page is rendered and displayed
 11. Additional asynchronous requests may continue
 
-Question: What are the differences between Long-Polling, Websockets and Server-Sent Events?
+### Question: What are the differences between Long-Polling, Websockets and Server-Sent Events?
 Answer:
 Long-Polling:
 - Client requests, server holds until data available
@@ -33,7 +33,7 @@ Server-Sent Events (SSE):
 - Unidirectional, server to client only
 - Uses standard HTTP for real-time updates
 
-Question: Explain the following request and response headers:
+### Question: Explain the following request and response headers:
 Answer:
 
 Expires, Date, Age and If-Modified-Since:
@@ -57,7 +57,7 @@ ETag:
 X-Frame-Options:
 - Control whether a page can be displayed in a frame
 
-Question: What are HTTP methods? List all HTTP methods that you know, and explain them.
+### Question: What are HTTP methods? List all HTTP methods that you know, and explain them.
 Answer:
 1. GET: Retrieve a resource
 2. POST: Submit data to be processed
@@ -69,7 +69,7 @@ Answer:
 8. TRACE: Echo the received request
 9. CONNECT: Establish a tunnel to the server
 
-Question: What is domain pre-fetching and how does it help with performance?
+### Question: What is domain pre-fetching and how does it help with performance?
 Answer: Domain pre-fetching resolves domain names before resources are requested. It helps performance by reducing DNS lookup time when the actual request is made. Example:
 
 ```js

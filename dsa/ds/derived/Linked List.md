@@ -27,6 +27,19 @@ class LinkedList {
     this.size = 0;     // Size of the list
   }
 
+// Add a node to the front of the list
+  prepend(data) {
+    const newNode = new Node(data);
+
+    if (!this.head) {
+      this.head = newNode;
+    } else {
+      newNode.next = this.head
+      this.head = newNode
+    }
+    this.size++;
+  }
+
   // Add a node to the end of the list
   append(data) {
     const newNode = new Node(data);

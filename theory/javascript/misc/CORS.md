@@ -14,7 +14,7 @@ When domain A request resourses from B, generally CORS preflight mechnism is fol
 a preflight options call is made before the actual api call is made
 server / domain B will check the options and verify it
 afer verification server / domain B will send the addition headers
-`Accept-Control-Allow-Origin: * ``
+`Accept-Control-Allow-Origin: * `
 any domian can all to call 
 
 `Accept-Control-Allow-Origin: https://vishal.com`

@@ -1,4 +1,4 @@
-Question: What tools would you use to find a performance bug in your code?
+### Question: What tools would you use to find a performance bug in your code?
 Answer: 
 1. Browser DevTools (Chrome, Firefox, Safari):
    - Performance tab for profiling
@@ -18,7 +18,7 @@ Example: Using Chrome DevTools Performance tab to record and analyze runtime per
 // Analyze flame chart, summary, and bottom-up views to identify bottlenecks
 ```
 
-Question: What are some ways you may improve your website's scrolling performance?
+### Question: What are some ways you may improve your website's scrolling performance?
 Answer:
 1. Use CSS will-change property for elements that will animate
 2. Implement virtual scrolling for long lists
@@ -41,7 +41,7 @@ window.addEventListener('scroll', () => {
 });
 ```
 
-Question: Explain the difference between layout, painting and compositing.
+### Question: Explain the difference between layout, painting and compositing.
 Answer:
 1. Layout (Reflow): 
    - Calculates the positions and sizes of elements
