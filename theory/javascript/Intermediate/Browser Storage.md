@@ -1,7 +1,8 @@
 *locally storing data to users browser*
 it is only available users current browser, also it is specific to device
 
-#### There three different types of browser storage
+### There three different types of browser storage
+
 **Cookies** - least useful version of browsers storage
 **Local storage** - much easy to use, going to be most useful
 **Session storage** - much easy to use
@@ -14,7 +15,7 @@ it is only available users current browser, also it is specific to device
 | East to use                             | Easy                | Hard                                                                                 |
 | normally shopping carts are stored here |                     | when you want to send data to server from client automatically, cookies are the best |
 
-#### Implementation on local and session storage
+### `localStorage` and `sessionStorage`
 
 ```js
 localStorage.setItem("Name", "Asd")
@@ -35,6 +36,7 @@ console.log(sessionStorage.getItem("Age"))
 ```
 
 Removing the Item
+
 ```js
 localStorage.removeItem("Name")
 sessionStorage.removeItem("Age")

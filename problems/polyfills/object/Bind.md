@@ -36,6 +36,7 @@ Function.prototype.mybind = function(obj, ...args1){
     obj.fn = this;
     return function(...args2){
         obj.fn(...args1, ...args2)
+        delete obj[fn]
     }
 }
 

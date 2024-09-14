@@ -1,6 +1,6 @@
-objects and arrays store references
+Objects and arrays store references
 
-values
+Values
 
 ```js
 let value1 = 1;
@@ -10,7 +10,7 @@ console.log(value1); // 1
 console.log(value2); // 3
 ```
 
-reference
+Reference
 
 ```js
 let x = [1]; // assume memory addres 0x01
@@ -20,7 +20,7 @@ console.log(x); // [1, 2]
 console.log(y); // [1, 2]
 ```
 
-comparing values
+Comparing values
 
 ```js
 const one = 1;
@@ -30,7 +30,7 @@ console.log(one === 1);       // true
 console.log(one === one);     // true
 ```
 
-comparing references
+Comparing references
 
 ```js
 const ar1 = [1];
@@ -49,17 +49,18 @@ const arr1 = [1, 2] // 0x01
 const arr2 = [1, 2] // 0x02
 arr1.push(3)
 ```
-will not throw error even it looks like we are changing the const.
-actually we are modifying the value at that memory address. not the actual address. `const` doesn't care about what is there at memory address
 
-only way to change the address is
+Will not throw error even it looks like we are changing the const.
+Actually we are modifying the value at that memory address. not the actual address. `const` doesn't care about what is there at memory address
+
+Only way to change the address is
 
 ```js
 arr1 = [1, 2, 3]
 // TypeError: Assignment to constant variable.
 ```
 
-pass by reference with function
+Pass by reference with function
 
 ```js
 const arr3 = [1, 2] // at memory address 0x01

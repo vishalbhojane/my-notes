@@ -8,18 +8,20 @@ most outer is Global scope.
 Different scope can have similar variable names
 
 ### JavaScript variables have 3 types of scope:
+
 Global scope: most outer scope
 Function scope: `function(){}`
 Block scope: `{}`, `let` and `const` follows block scope
 
-#### Global scope
-Accessible everywhere
+---
+
+Global scope - Accessible everywhere
 
 ```js
 let x = 1;
 ```
 
-#### Function scope
+Function scope
 
 ```js
 // code here can NOT use carName
@@ -30,7 +32,7 @@ function myFunction() {
 // code here can NOT use carName
 ```
 
-#### Block scope
+Block scope
 
 ```js
 {
@@ -40,11 +42,12 @@ console.log(x);
 // ReferenceError: x is not defined
 ```
 
-## Scope Chain
+---
+### Scope Chain
 
-Hierarchical structure that determines the order in which Javascript looks for variables is called a Scope Chain
+Hierarchical structure that determines the order in which JavaScript looks for variables is called a Scope Chain
 
-When a variable is accessed, Javascript first searches for it in the current scope
+When a variable is accessed, JavaScript first searches for it in the current scope
 and if it's not found, it moves up the scope chain until the variable is found or the global scope is reached.
 
 ```js

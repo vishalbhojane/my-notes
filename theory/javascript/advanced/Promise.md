@@ -3,26 +3,28 @@ A Promise is an object which represents eventual completion or failure of an asy
 Promises are immutable once resolved and they give us a lot of control over our code.
 
 They have three state pending, fulfilled or rejected.
+
 The promise object contains two parts
-1) PromiseState (stores the sate of the promise)
-2) PromiseResult (stores data)
+1) Promise State (stores the sate of the promise)
+2) Promise Result (stores data)
 
 #### Creating a Promise
 
 ```js
-const ride = new Promise((resolve, reject) => {
-    if (arrived) {
-        resolve('driver arrived 🚗')
-    } else {
-        reject('driver bailed 😭')
-    }
+const myPromise = new Promise((resolve, reject) => {
+	let success = true; // Example condition
+	if (success) {
+		resolve('Operation succeeded!');
+	} else {
+		reject('Operation failed.');
+	}
 });
 ```
 
 ### Consuming a promise
 
 ```js
-ride
+myPromise
     .then(value => {
         console.log(value)
     })
@@ -30,7 +32,7 @@ ride
         console.log(error)
     })
     .finally(() => {
-        console.log('all settled')
+        console.log('cleaning up')
     })
 ```
 
@@ -102,7 +104,28 @@ createOrder(cart)
     })
 ```
 
-### Promise APIs
+
+### Sequential Execution
+
+```js
+doTask1()
+	.then((result1) => {
+		return doTask2(result1);
+	})
+	.then((result2) => {
+		return doTask3(result2);
+	})
+	.then((finalResult) => {
+		console.log('All tasks completed:', finalResult);
+	})
+	.catch((error) => {
+		console.error('Error occurred:', error);
+	});
+```
+
+### Parallel execution (see `Promise.all`)
+
+## Promise APIs
 
 Input
 
@@ -193,4 +216,8 @@ promise_all.then(res => console.log(res)).catch(err => console.log(err.errors)) 
 // AggregateError: All promises were rejected (in case or console.log(err))
 // [ 'p1 fail', 'p2 fail', 'p3 fail' ] (in case or console.log(err.errors))
 ```
+
+To-do
+Update from here
+[Medium](https://medium.com/@AlexanderObregon/understanding-javascript-promises-b465719f9835)
 

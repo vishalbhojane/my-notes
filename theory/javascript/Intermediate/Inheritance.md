@@ -1,7 +1,9 @@
 Inheritance refers to the mechanism that allows objects to acquire properties and methods from parent objects without redundant definition
 
 ### Prototypal inheritance
+
 every object has an internal reference called prototype, pointing to another object that provides common properties and methods.
+
 When accessing a property or method, the search starts at the object itself;
 then, if the property isn't found, the search continues up the chain,
 stopping at the prototype of `Object.prototype`
@@ -14,7 +16,6 @@ arr.__proto__ === Array.prototype
 arr.__proto__.__proto__ === Object.prototype
 arr.__proto__.__proto__.__proto__ === null
 ```
-
 #### Object
 
 ```js
@@ -25,7 +26,6 @@ let object = {
 }
 object.__proto__ === Object.prototype
 ```
-
 ### Function
 
 ```js
@@ -36,9 +36,10 @@ printHello.__proto__ === Function.prototype
 printHello.__proto__.__proto__ === Object.prototype
 ```
 
-*Everything in javascript is an object*
+*Everything in JavaScript is an object*
 
-Changing the prototype (Never do this)
+---
+### Changing the prototype (Never do this) ⚠
 
 ```js
 let object2 = {
@@ -50,8 +51,7 @@ console.log(object2.name);  // > ankesh
 console.log(object2.city);  // > mumbai (when we try to access the property or method it will first try to check in its context, then check in prototye)
 object2.getIntro()
 ```
-
-more ex
+### Adding new properties and methods
 
 ```js
 // creating custom polyfill for bind() method

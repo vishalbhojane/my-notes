@@ -25,12 +25,13 @@ const compose = function(...fns){
 }
 ```
 
+### Advantages of composition
 
-#### Reusability
+**Reusability**
 By composing smaller, reusable functions, we can create complex operations without duplicating code. Each function can focus on a specific task, promoting code modularity and reusability.
 
-#### Readability
+**Readability**
 Function composition allows us to express complex operations in a more declarative and concise manner. By chaining functions together, we can describe the intended transformation in a way that closely aligns with the problem domain.
 
-#### Maintainability
+**Maintainability**
 Since each function has a well-defined purpose, it becomes easier to understand, test, and modify individual functions. Changes to one function do not impact other functions in the composition, leading to code that is easier to maintain and reason about.

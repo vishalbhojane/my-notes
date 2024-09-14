@@ -1,4 +1,4 @@
-It coordinates different parts of JavaScript runtime such as the Call Stack, Callback Queue, and Web APIs.
+It coordinates different parts of JavaScript runtime such as the Call Stack, Call Back Queue, and Web APIs.
 Its primary goal is to ensure all events, both synchronous and asynchronous, are handled properly within a single threaded environment
 
 the Event Loop follows three basic steps
@@ -27,9 +27,10 @@ console.log(6)
 ```
 
 main thread - all your code runs
-setTimeout - creates seperate thread, then after the timeout it plugs back to main thread
+`setTimeout` - creates separate thread, then after the timeout it plugs back to main thread
 
-more ex
+---
+##### Q. What will be the output
 
 ```js
 function test() {

@@ -1,5 +1,5 @@
-*functions that calls itself*
-recursion is used to solve problems that contain smaller sub-problems
+*Functions that calls itself*
+Recursion is used to solve problems that contain smaller sub-problems
 
 ```js
 function printHi() {
@@ -7,7 +7,7 @@ function printHi() {
 }
 ```
 
-print numbers from 1 to 10
+Print numbers from 1 to 10
 
 ```js
 function printNumber(number) {
@@ -20,7 +20,7 @@ function printNumber(number) {
 printNumber(1) // start number
 ```
 
-sum numbers below
+Sum numbers below
 
 ```js
 function sumNumbersBelow(number) {
@@ -30,7 +30,7 @@ function sumNumbersBelow(number) {
 const result = sumNumbersBelow(10);
 ```
 
-more ex
+More ex
 
 ```js
 const person = {

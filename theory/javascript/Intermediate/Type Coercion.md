@@ -1,7 +1,8 @@
 Type coercion is the automatic or implicit conversion of values from one data type to another
 
-### Explicit type coersion
-Because we are explicitily saying we want to convert string to number
+### Explicit type coercion
+
+Because we are explicitly saying we want to convert string to number
 
 ```js
 let value1 = "1";
@@ -14,6 +15,8 @@ value3.toString();
 
 ### Implicit type coercion
 
+JS will convert number to strings when adding number and string
+
 ```js
 let value4 = 1;
 const value5 = "Hello ";
@@ -24,19 +27,20 @@ console.log(value6 - value4) // will return 2
 console.log(value6 + value4) // will return 31
 ```
 
-JS will convert number to strings when adding number and string
-
-#### Zero is consider as a false when loosely checking
+Zero is consider as a false when loosely checking
 
 ```js
 0 == false // js will return true
 ```
 
-Avoiding Type coercion when comparing two different types
+---
+
+### Avoiding Type coercion when comparing two different types
 
 ALWAYS USE `===` (three equal signs) when checking two types, `!==` to check not equal
 but use  `==` (double equal) to check `undefined` and `null`
 
+---
 ### `NaN`
 
 ```js
@@ -53,7 +57,8 @@ let b = 'asd'
 isNaN(b) //will return true
 ```
 
-### Questions
+---
+##### Questions
 
 ```js
 console.log(3 > 2 > 1)

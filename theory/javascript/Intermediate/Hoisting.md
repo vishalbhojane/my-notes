@@ -1,6 +1,4 @@
-Hoisting - (`var` and `function`)
 Hoisting is JavaScript's default behaviour of moving all `var` and `function` declarations to the top of the current scope before code execution. (*to the top of the current script or the current function*)
-
 
 ```js
 console.log(sum(1, 2))

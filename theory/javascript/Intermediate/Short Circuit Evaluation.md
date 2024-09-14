@@ -2,6 +2,7 @@ In short-circuit evaluation, an expression with logical operators (`||` and `&&`
 So, if the condition is met and the rest of the conditions won’t affect the already evaluated result, the expression will short-circuit and return that result.
 
 ### Logical OR (`||`) Operator
+
 This operator will return the first true value.
 So, it won’t even reach the rest of the conditions and return true as the condition is satisfied.
 
@@ -11,6 +12,7 @@ true || false
 ```
 
 ### Logical AND(`&&`) Operator
+
 This operator will return false as soon as it gets any falsy value and will return the last true value if all the values are truthy.
 
 ```js
@@ -46,7 +48,10 @@ printFalse() && printTrue() // only printFalse() will run
 printTrue() && printFalse() // both will run
 ```
 
-#### use of short circuit evaluation - OR
+---
+### Use of short circuit evaluation
+
+OR
 
 ```js
 // normal way
@@ -66,7 +71,7 @@ function printName(name) {
 }
 ```
 
-#### use of short circuit evaluation - AND
+AND
 
 ```js
 const person = {

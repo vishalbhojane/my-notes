@@ -1,4 +1,4 @@
-### Memory life cycle includes
+Memory life cycle includes
 1. Allocate the memory you need
 2. Use the allocated memory (read, write)
 3. Release the allocated memory when it is not needed anymore

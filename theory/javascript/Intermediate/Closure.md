@@ -1,4 +1,4 @@
-Closure is the combination of a function bundled together (enclosed) with references to its surrounding state (the lexical environment).
+Closure is the combination of a function bundled together with references to its surrounding state (the lexical environment).
 Closure gives you access to an outer function’s scope from an inner function.
 
 **Imp**: To use a closure, define a function inside another function and expose it. To expose a function, return it or pass it to another function.
@@ -30,8 +30,7 @@ var z = x()
 ```
 
 Function returned from `x()` is stored in `var` `z`, it will also remember its lexical scope even if `x` is done executing and no longer on call stack
-
-#### Corner case 1
+### Corner case 1
 
 ```js
 function x() {
@@ -46,8 +45,7 @@ function x() {
 var res = x();
 res(); // we will get 100 as output
 ```
-
-#### Chaining Continues
+### Chaining Continues
 
 ```js
 function w() {
@@ -64,12 +62,13 @@ function w() {
 var res = w();
 ```
 
-#### Uses of closures
+### Use of closures
+
 - Module design pattern
 - Currying
 - Functions like 'once' / To make function run only once 
-- Memoize
-- Maintaining state in async world
-- setTimeouts
+- `Memoize`
+- Maintaining state in `async` world
+- `setTimeouts`
 - Iterators
 - and many more...

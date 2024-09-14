@@ -75,8 +75,22 @@ Answer: bind() creates a new function with a fixed this value and optionally pre
 ### Question: What is the difference between feature detection, feature inference, and using the UA string?
 Answer:
 - Feature detection: Checking if a feature exists.
+```js
+if ("geolocation" in navigator) {
+  navigator.geolocation.getCurrentPosition(function (position) {
+    // show the location on a map, such as the Google Maps API
+  });
+} else {
+  // Give the user a choice of static maps
+}
+```
 - Feature inference: Assuming related features exist based on one feature.
-- UA string: Identifying the browser based on the user agent string.
+```js
+if (document.getElementsByTagName) {
+  element = document.getElementById(id);
+}
+```
+- UA string: Identifying the browser based on the user agent string. `navigator.userAgent`
 Feature detection is generally the most reliable approach.
 
 ### Question: Explain "hoisting".
