@@ -1,5 +1,72 @@
 The Fetch API provides a JavaScript interface for making HTTP requests and processing the responses.
+
 `fetch()` returns a Promise which is fulfilled with a Response object representing the server's response
+##### Syntax
+
+```js
+fetch('url') // api for the get request
+    .then(response => response.json())
+    .then(data => console.log(data));
+```
+##### Parameters
+
+**URL**: The URL to which the request is to be made.
+
+**Options**: It is an array of properties. It is an optional parameter. Options available are:
+- Method: Specifies HTTP method for the request. (can be GET, POST, PUT or DELETE)
+- Headers
+- Body: Data to be sent with the request.
+- Mode: Specifies request mode(eg. `cors`, `nocors`, same-origin, etc)
+- Credentials: Specifies whether to send user credentials (cookies, authentication headers, etc.) with the request
+
+---
+### GET
+
+```js
+const fetchRes = fetch("https://jsonplaceholder.typicode.com/todos/1");
+
+fetchRes.then(res =>
+    res.json()).then(d => {
+        console.log(d)
+    })
+```
+### POST
+
+```js
+// Your JSON data
+const jsonData = { key1: 'value1', key2: 'value2' };
+
+// Set up options for the fetch request
+const options = {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json' // Set content type to JSON
+    },
+    body: JSON.stringify(jsonData) // Convert JSON data to a string and set it as the request body
+};
+
+// Make the fetch request with the provided options
+fetch('https://api.example.com/upload', options)
+    .then(response => {
+        // Check if the request was successful
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        // Parse the response as JSON
+        return response.json();
+    })
+    .then(data => {
+        // Handle the JSON data
+        console.log(data);
+    })
+    .catch(error => {
+        // Handle any errors that occurred during the fetch
+        console.error('Fetch error:', error);
+    });
+```
+
+---
+### More Examples
 
 ```js
 const URL = "https://jsonplaceholder.typicode.com/users"
@@ -13,7 +80,7 @@ fetch(URL)
     })
 ```
 
-converting above promise to async await
+Converting above promise to `async` `await`
 
 ```js
 async function doStuff() {
@@ -24,7 +91,7 @@ async function doStuff() {
 doStuff()
 ```
 
-checking the response for error
+Checking the response for error
 
 ```js
 async function doStuff() {
@@ -39,26 +106,6 @@ async function doStuff() {
     } catch (e) {
         console.error(e)
     }
-}
-doStuff()
-```
-
-to send data to server
-
-```js
-const BLOG_URL = "https://jsonplaceholder.typicode.com/posts"
-async function doStuff() {
-    const response = await fetch(BLOG_URL, {
-        method: 'POST', // this is not related to word posts in url, here we are telling that we are sending data
-        headers: {
-            'Content-Type': "application/json"
-        },
-        body: JSON.stringify({
-            title: "Hello world"
-        })
-    })
-    const post = await response.json()
-    console.log(post)
 }
 doStuff()
 ```

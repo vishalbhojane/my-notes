@@ -1,8 +1,9 @@
 *another way to handle promise*
-JavaScript Introduces keywords `async` and `await` in ES6
+JavaScript Introduced keywords `async` and `await` in ES6
+### `async`
 
-### `Async`
 When we append the keyword `async` to the function, this function returns the Promise by default on execution
+
 ```js
 async function simpleAsync() {
     return "hello"
@@ -11,11 +12,12 @@ console.log(simpleAsync())
 // Promise {<fulfilled>: 'hello'}
 ```
 
-`Async` keyword provides extra information to the user of the function
+`async` keyword provides extra information to the user of the function
   - The function contains some Asynchronous Execution
   - The returned value will be the Resolved Value for the Promise
 
-We can associate a callback function with the promise using “`then`”
+We can associate a call back function with the promise using “`then`”
+
 ```js
 simpleAsync().then((data) => {
     console.log(data)
@@ -23,12 +25,14 @@ simpleAsync().then((data) => {
 // hello
 ```
 
-**summery**
+**Summery**
+
 Appending “`async`” will return a promise from a function
 In case the function is returning some value, the value will be available as the resolved value from the promise.
 If no value is returned, the resolved value will be “undefined”
 
 #### Understanding Asynchronous Execution
+
 ```js
 function returnPromises() {
     var newPromise = new Promise((resolve) => {
@@ -51,9 +55,12 @@ executeFunction()
 // Promise Executed...
 ```
 
-## `Await`
+---
+### `await`
+
 Adding “`await`” before a promise makes the execution thread to wait for asynchronous task/promise to resolve before proceeding further
-it introduces **synchronous behavior** to the application. Even the promises will be executed synchronously
+
+It introduces **synchronous behaviour** to the application. Even the promises will be executed synchronously
 
 ```js
 function returnPromises() {
@@ -83,35 +90,11 @@ executeFunction()
 // Sample Data
 ```
 
-`Await` and `Async` keyword combined together ensures that the main thread will not start executing further until the asynchronous part of the application has finished execution
+`await` and `async` keyword combined together ensures that the main thread will not start executing further until the asynchronous part of the application has finished execution
 hence imparting synchronous behaviour to the thread.
 
-### more ex
-```js
-function setTimeoutPromise(delay) {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            // resolve(`You waited ${delay} milliseconds`)
-            reject("Error!")
-        }, delay)
-    })
-}
-
-// using promise
-setTimeoutPromise(100)
-    .then(message => {
-        console.log(message)
-        console.log("1")
-        return setTimeoutPromise(100)
-    })
-    .then(message => {
-        console.log(message)
-        console.log("2")
-    })
-    .catch(e => {
-        console.error(e)
-    })
-```
+---
+More ex
 
 ```js
 // using async
@@ -137,7 +120,8 @@ doStuff()
 // Error!
 // finally
 ```
-### more ex
+
+More ex
 
 ```js
 function getValueWithDelay(value, delay) {
@@ -164,4 +148,32 @@ for (let i = 0; i < 10; i++) {
     })
 }
 // here everything will print out after 250 ms
+```
+
+More examples
+
+```js
+function delayedPromise(ms) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            // resolve(`You waited ${ms} milliseconds`)
+            reject("Error!")
+        }, ms)
+    })
+}
+
+// consuming the promise
+delayedPromise(100)
+    .then(message => {
+        console.log(message)
+        console.log("1")
+        return delayedPromise(100)
+    })
+    .then(message => {
+        console.log(message)
+        console.log("2")
+    })
+    .catch(e => {
+        console.error(e)
+    })
 ```

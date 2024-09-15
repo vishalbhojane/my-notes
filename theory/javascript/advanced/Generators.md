@@ -1,7 +1,6 @@
 A generator function is a special type of function that can pause its execution and resume later.
-They are defined using the` function*` syntax and use the yield keyword to yield values.
+They are defined using the` function*` syntax and use the `yield` keyword to yield values.
 
-A generator function uses the `yield` keyword to generate values, pausing execution and sending values to the caller
 It retains the state to resume execution after yield, continuing immediately after the last yield run
 
 Generator functions return a generator object.
@@ -16,6 +15,7 @@ function* fun() {
 }
 
 let gen = fun();
+
 console.log(gen.next().value);
 // 10
 console.log(gen.next().value);
@@ -38,20 +38,23 @@ function* nextNatural() {
 }
 
 // Calling the Generate Function
-let gen2 = nextNatural();
+let gen = nextNatural();
 
 // Loop to print the first 10 Generated number
 for (let i = 0; i < 10; i++) {
     // Generating Next Number
-    console.log(gen2.next().value);
+    console.log(gen.next().value);
 }
 ```
 
-## `yield`
-pauses the generator execution and returns the value of the expression which is being written after the yield keyword.
+---
+### `yield`
 
-## `yield*`
-it iterates over the operand and returns each value until done is true
+Pauses the generator execution and returns the value of the expression which is being written after the yield keyword.
+
+---
+### `yield*`
+It iterates over the operand and returns each value until done is true
 
 ```js
 const arr = ['a', 'b', 'c'];
@@ -61,8 +64,10 @@ function* generator() {
     yield* arr;
     yield 2;
 }
-const gen4 = generator();
-for (let value of gen4) {
+
+const gen = generator();
+
+for (let value of gen) {
     console.log(value);
 }
 // 1
@@ -81,10 +86,10 @@ function* generator() {
     yield 'b';
 }
 
-let gen5 = generator();
-console.log(JSON.stringify(gen5.next()));
+let gen = generator();
+console.log(JSON.stringify(gen.next()));
 // {value: "a", done: false}
-console.log(JSON.stringify(gen5.next()));
+console.log(JSON.stringify(gen.next()));
 // {value: "result", done: true}
 ```
 
@@ -92,6 +97,7 @@ Manually return from a generator
 
 ```js
 let array = ['a', 'b', 'c'];
+
 function* generator(arr) {
     let i = 0;
     while (i < arr.length) {
@@ -99,8 +105,8 @@ function* generator(arr) {
     }
 }
 
-const gen3 = generator(array);
-// We can do gen3.return() to finish the generator
+const gen = generator(array);
+// We can do gen.return() to finish the generator
 ```
 
 Throw an exception from the generator
@@ -109,8 +115,9 @@ Throw an exception from the generator
 function* generator() {
     throw new Error('Error Occurred');
 }
-const gen6 = generator();
-gen6.next();
+
+const gen = generator();
+gen.next();
 ```
 
 Calling a generator from another generator
@@ -120,18 +127,26 @@ function* firstGenerator() {
     yield 2;
     yield 3;
 }
+
 function* secondGenerator() {
     yield 1;
     yield* firstGenerator();
     yield 4;
 }
+
 for (let value of secondGenerator()) {
     console.log(value)
 }
+// 1
+// 2
+// 3
+// 4
 ```
 
-### Limitation of Generators:
-You can’t yield inside a callback in a generator.
+---
+### Limitation of Generators
+
+You can’t yield inside a call back in a generator.
 
 ```js
 function* generator() {
@@ -140,9 +155,10 @@ function* generator() {
 }
 ```
 
+---
+### `async function*()`
 
-## `async function*()`
-Using `async` generators (for api call)
+Using `async` generators (for API call)
 
 ```js
 const firstPromise = () => {
@@ -159,8 +175,9 @@ async function* generator() {
     yield secondPromiseResult;
 }
 
-let gen7 = generator();
-for await (let value of gen7) {
+let gen = generator();
+
+for await (let value of gen) {
     console.log(value);
 }
 // (after 5 seconds)

@@ -1,5 +1,5 @@
-caching the results of expensive function calls and returning them when the same inputs are used again
-is a technique for speeding up applications
+Caching the results of expensive function calls and returning them when the same inputs are used again
+Technique for speeding up applications
 
 Normal Function
 
@@ -29,31 +29,34 @@ function fib(n, memo) {
 }
 ```
 
-more ex
+### Memoize Function
 
 ```js
-// Define a function to memoize
-function multiply(x, y) {
-    return x * y;
-}
+function memoize(fn) {
+    const cache = {}
 
-// Define a memoization cache as an object
-const cache = {};
-
-// Define a memoized version of the function
-function memoizedMultiply(x, y) {
-    const cacheKey = x + ":" + y;
-    if (cache[cacheKey] !== undefined) {
-        console.log('from cache')
-        return cache[cacheKey];
-    } else {
-        const result = multiply(x, y);
-        cache[cacheKey] = result;
-        return result;
+    return function (...args) {
+        const key = JSON.stringify(arguments)
+        if (cache.hasOwnProperty(key)) {
+            return cache[key]
+        }
+        return cache[key] = fn(...args)
     }
 }
+```
 
-// Call the memoized function
-console.log(memoizedMultiply(2, 3)); // Should print "6"
-console.log(memoizedMultiply(2, 3)); // Should print "6" again (result is already memoized)
+Usage
+
+```js
+function fib(n){
+    if (n < 2) {
+        return n
+    }
+    return fib(n - 1) + fib(n - 2)
+}
+
+const memoizedFib = memoize(fib)
+
+console.log(memoizedFib(15))
+console.log(memoizedFib(15))
 ```

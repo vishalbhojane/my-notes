@@ -1,121 +1,158 @@
-#### Before
-iteration in javascript
+Iterable is an object that defines the Iterator property.
+In order to be iterable, an object must implement the `@@iterator` method.
+The property `Symbol.Iterator` on an object converts the object into Iterable
+Iterables which can iterate only once (such as Generators) customarily return `this` from their `@@iterator` method
+Iterables which can be iterated many times must return a new iterator on each invocation of `@@iterator`
 
 ```js
-// for string
-const str = "vishal"
-for (let i = 0; i < str.langth; i++) {
-    const c = str.charAt(i)
-}
-
-// for array
-const arr = ['apple', 'banana', 'watermelon']
-for (let i = 0; i < arr.length; i++) {
-    const el = arr[i]
+var iterable ={
+    [Symbol.iterator] : () => {
+        //Iterator defination
+    }
 }
 ```
 
-in above code
-- Difficulty in accessing the elements
-- Difficult to manage iteration on the data for various data structure
-
-#### Now
-JavaScript provides a protocol to iterate over data structures.
-This protocol defines how these data structures are iterated over using the for...of loop.
-
-The concept of the protocol can be split into:
-- **iterable** - The data structures that have the Symbol.iterator() method are called iterables. For example, Arrays, Strings, Sets, etc
-- **iterator** - An iterator is an object that is returned by the Symbol.iterator() method
+### Custom iterable
 
 ```js
-const arr = [1, 2 ,3];
+var iterable = {
+    "numbers": [1,2,3,4,5],
+    [Symbol.iterator]: function(){
+        var index = 0
 
-// calling the Symbol.iterator() method
-const arrIterator = arr[Symbol.iterator]();
-
-// gives Array Iterator
-console.log(arrIterator);
-// Array Iterator {}
-```
-
-```js
-const str = 'hello';
-
-// calling the Symbol.iterator() method
-const strIterator = str[Symbol.iterator]();
-
-// gives String Iterator
-console.log(strIterator);
-// StringIterator {}
-```
-
-Iterate Through Iterables
-
-```js
-const number = [ 1, 2, 3];
-for (let n of  number[Symbol.iterator]()) {
-    console.log(n);
-}
-```
-
-Or you can simply iterate through the array like this:
-
-```js
-for (let n of  number) {
-    console.log(n);
-}
-```
-
-## `next()` Method
-The iterator object has a next() method that returns the next item in the sequence.
-
-The next() method contains two properties: value and done.
-- **value** - The value property can be of any data type and represents the current value in the sequence.
-- **done** - The done property is a boolean value that indicates whether the iteration is complete or not. If the iteration is incomplete, the done property is set to false, else it is set to true
-
-```js
-const arr2 = ['h', 'e', 'l', 'l', 'o'];
-const arrIterator2 = arr[Symbol.iterator]();
-
-console.log(arrIterator2.next()); // {value: "h", done: false}
-console.log(arrIterator2.next()); // {value: "e", done: false}
-console.log(arrIterator2.next()); // {value: "l", done: false}
-console.log(arrIterator2.next()); // {value: "l", done: false}
-console.log(arrIterator2.next()); // {value: "o", done: false}
-console.log(arrIterator2.next()); // {value: undefined, done: true}
-```
-
-### custom iterable
-
-```js
-const obj = {
-    [Symbol.iterator]: function () {
-        let step = 0;
-        const iterator = {
-            next: function () {
-                step++
-
-                if (step === 1) {
-                    return { value: 'Hello', done: false }
-                } else if (step === 2) {
-                    return { value: 'World', done: false }
+        return {
+            next: function(){ // can be replaced with arrow function, then just remove the 'bind'
+                if(index < this.numbers.length){
+                    var temp = {value: this.numbers[index], done: false}
+                    index++
+                    return temp
+                } else {
+                    return {value: undefined, done: true}
                 }
-                return { value: undefined, done: true }
-            }
+            }.bind(this)
         }
-        return iterator
     }
 }
 
-for(let word of obj){
-    console.log(word)
+for(const i of iterable){
+    console.log(i)
 }
 ```
+### Relation between Iterable and Iterator.
 
-we have created our custon iterable '`obj`'
-just like we did above, javascript intenally does for Strings, Arrays, Maps and Sets
+As discussed above Iterable is an object which consists of an Iterator
+Iterator is defined under the key `Symbol.Iterator`.
+Iterator is the action definition of iteration this holds the custom logic of next() function
+Next function is called iteratively and as per the protocol it returns value and done keys.
 
-### custom iterator using generator function
+![[iterable-iterator.webp]]
+
+---
+### Iterator
+
+Iterators often used in combination with the `for...of` loop in JavaScript to iterate over elements in a simple and readable manner.
+
+Built-in JavaScript functions and methods, such as `Array.prototype.map() or Array.prototype.forEach()`, to process collections internally use Iterators
+
+_Long story short, iterator is a closure which returns an object having having function next()/ or function next(), on each subsequent calling of the next function we get the next iteration value_
+
+### Building blocks of an Iterator
+
+`next()`:  next function returns an object consisting of two keys {value , done}.
+
+`{value , done}`: Each next execution returns a value but done is returned as false until the iteration is complete(reaches length of the array/ object). Once all the values are iterated the done is returned as true and value turns out to be undefined.
+
+`Symbol.iterator`: This symbol is a well-known symbol in JavaScript that defines the default iterator for an object. It is typically implemented as a function that returns the iterator object itself
+
+To use an iterator you typically call the `Symbol.iterator` method on a collection or data structure to obtain an iterator object
+
+---
+### Lets use an iterator over an array
+
+```js
+var temp = [1,2,3]
+
+// 1. Fetch the iterator object for the collection or data structure(array in this case)
+var iterator = temp[Symbol.iterator]
+
+// 2. use .next() on the iterator to fetch the values:
+
+iterator.next(); // returns { value: 1, done: false }
+
+iterator.next(); // returns { value: 2, done: false }
+
+iterator.next(); // returns{ value: 3, done: false }
+
+iterator.next(); // returns { value: undefined, done: true }
+```
+
+---
+### Custom Iterator
+
+```js
+var arr = [1,2,3,4,5]
+
+Array.prototype.iterator = function(){
+    var count = 0;
+
+    return {
+        next: function(){
+            for(var i = count; i < this.length; i++){
+                var res = {value: this[i], done: false}
+                count++
+                return res
+            }
+            return {value: undefined, done: true}
+        }.bind(this)
+    }
+}
+
+var itr = arr.iterator()
+
+var i = itr.next()
+
+while(!i.done){
+    console.log(i)
+    i = itr.next()
+}
+
+// to print the done true after all the items done executing
+console.log(i)
+```
+
+Above code using generator
+
+```js
+var arr = [1,2,3,4,5]
+
+Array.prototype.iterator = function* (){
+    var count = 0;
+
+    for(var i = count; i < this.length; i++){
+        yield this[i]
+        count++
+    }
+}
+
+var itr = arr.iterator()
+
+var i = itr.next()
+
+while(!i.done){
+    console.log(i)
+    i = itr.next()
+}
+
+// to print the done true after all the items done executing
+console.log(i)
+```
+
+iterators and iterables are fundamental concepts in JavaScript that facilitate the traversal and manipulation of collections.
+Iterators provide a standardised way to access elements sequentially
+Iterables are objects that define the iteration behaviour by implementing the iterator protocol
+
+---
+### Custom iterator using generator function
 
 ```js
 function* generatorFunction(){
@@ -128,4 +165,3 @@ const generatorObject = generatorFunction()
 for (let word of generatorObject){
     console.log(word.next().value)
 }
-```

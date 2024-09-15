@@ -1,152 +1,229 @@
-this keyword, dynamically refers to the object executing a function or method
+The **`this`** keyword refers to the context where a piece of code, such as a function's body, is supposed to run
+### Common case
 
-Itself, this points to the global object. (Default binding)
-
-```js
-console.log(this, 'global scope')
-// window (if ran on browser), global in nodejs
+```mermaid
+flowchart TD
+    A{In a function?} --> |Yes| C(Invoked as a method?)
+    A{In a function?} --> |No| B(Window)
+    C(Invoked as a method?) --> |Yes| D(Left of dot)
+    C(Invoked as a method?) --> |No| E(Window &lpar;Undefined if function created on class&rpar;)  
 ```
 
-Within a function, this typically points to the global object.
+##### Standalone / Global context
 
 ```js
-function x() {
-    console.log(this, 'function scope');
+console.log(this)
+// window
+```
+##### Function, invoked standalone
+
+```js
+function logThis(){
+	console.log(this)
 }
-x()
-//window (if ran on browser), global in nodejs
+
+logThis();
+// window
+```
+##### Function, invoked as a method (using dot notation)
+
+```js
+class MyClass {
+    static method(){
+        console.log(this)
+    }
+}
+
+MyClass.method();
+// MyClass
 ```
 
-In a function under strict mode, this becomes undefined.
+##### Method written is a class, but invoked as a standalone function
 
 ```js
-'use strict'
-function x() {
-    console.log(this, 'function scope');
+class MyClass {
+    static method(){
+        console.log(this)
+    }
 }
-x()
+
+const test = MyClass.method();
+test()
 // undefined
-
-window.x()
-// window (if ran on browser)
 ```
 
-inside arrow function refers to the enclosing lexical context
-
+##### Method written in an object, but invoked standalone
 ```js
-const obj2 = {
-    a: 10,
-    x: () => { console.log(this, 'obj scope with arrow function')}
-}
-obj2.x(); // widow object because the 'obj2' has a global lexical context
-
-const obj3 = {
-    a: 10,
-    x: function () {
-        // enclosing lexical context
-        const y = () => { console.log(this, 'obj scope')}
-        y();
+const myObject = {
+    method: function(){
+        console.log(this)
     }
 }
-obj3.x(); //> Returns obj3
+
+function outer(input){
+	// input = myObject.method
+    input() // invoked here
+}
+
+outer(myObject.method)
+// window
 ```
 
-Within a method of an object, this points to that object.
+---
+### Special case
+
+##### `call()`, `apply()`, `bind()` -> Up to you
+
+This functions are used to explicitly control the value of `this`
 
 ```js
-const obj = {
-    a: 10,
-    x: function () { // function inside an object is known as a method
-        console.log(this, 'obj scope');
-    }
+function logThis(){
+    console.log(this)
 }
-obj.x(); //> { a: 10, x: f} 'obj scope'
+
+const gordon = {name: 'Gorder'}
+
+logThis.call(gordon)
+// { name: 'Gorder' }
+
+logThis.apply(gordon)
+// { name: 'Gorder' }
+
+logThis.bind(gordon)()
+// { name: 'Gorder' }
+```
+##### `new` -> New empty object
+
+Constructor function
+
+```js
+function Person(name){
+    // this = {}
+    this.name = name
+    // return this;
+}
+
+const p = new Person('Gorden')
+
+console.log(p)
+// Person { name: 'Gorden' }
 ```
 
-During an event, this points to the element that triggered the event.
+Class
+
+```js
+class Person {
+    constructor(name){
+        // this = {}
+        this.name = name
+        // return this
+    }
+}
+
+const p = new Person('Gorden')
+console.log(p)
+// Person { name: 'Gorden' }
+```
+
+```js
+class Test {
+    constructor(name){
+        this.name = name
+    }
+
+    thisOutside = this
+}
+
+const t = new Test()
+t.thisOutside === t
+// true
+```
+
+```js
+class Parent {
+    constructor(){
+        // inside
+    }
+    // outside
+}
+
+class Child extends Parent {
+    constructor(){
+        super()
+        // inside
+    }
+    // outside
+}
+
+const child = new Child()
+```
+
+##### Arrow Function -> Outside 'this' when function is created
+
+```js
+const o = {
+    arrowMethod: /* & */ () => {
+        console.log(this) // window, value of this at '&' is window, object 'o' is in window
+    }
+}
+
+o.arrowMethod()
+```
+
+##### Super method -> Outside 'this' when function is invoked
+
+```js
+class Parent {
+    static parentMethod(){
+        console.log(this)
+    }
+}
+
+class Child {
+    static childMethod(){
+        // this = Child
+        super.parentMethod();
+    }
+}
+
+Child.childMethod() // Child
+
+const test =  Child.childMethod
+test() // undefined
+```
+
+---
+### Built in functions
 
 ```html
-<button onclick="console.log(this)">Click Me</button>
+<button>Click Me</button>
+
+<Script>
+	const btn = document.querySelector('button)
+	btn.addEventListener('click' function(){
+		console.log(this) // button
+	})
+</Script>
+
 ```
 
-Methods such as `call()`, `apply()`, and `bind()` can reassign this to any desired object.
-
 ```js
-const student = {
-    name: 'vishal',
-    printName: function () {
-        console.log(this.name);
+class MyClass {
+    static method() {
+        console.log(this)
     }
 }
-student.printName();
 
-const student2 = {
-    name: 'ankesh',
-}
-student.printName.call(student2) // value of 'this' can be modify using call method
+[1].forEach(MyClass.method); // undefined
 ```
 
-## Part 2
+---
+### Summary
 
-`this` keyword refers to the object it belongs to
-it makes function reusable by letting you decide the object value
-this value is determined by entirely how the function is called
-
-### implicit binding
-
-```js
-const person = {
-    name:'vishal',
-    sayMyName: function(){
-        console.log('my name is ', this.name)
-    }
-}
-person.sayMyName()
-```
-
-### explicit binding
-
-```js
-function sayMyName(){
-    console.log('my name is ', this.name)
-}
-sayMyName.call(person)
-```
-
-### `new` binding
-
-```js
-function Person(name){ // constructor function
-    // here constructor function returns an empty object {}
-    this.name = name
-}
-const p1 = new Person('vishal')
-// {name:'vishal'}
-```
-
-### default binding = refers to global object
-```js
-// name = 'vishal'
-function sayMyName(){
-    console.log('my name is ', this.name)
-}
-sayMyName()
-// my name is undefined
-// my name is vishal (if contains a global variable 'name')
-```
-
-### Order precedence
-
-New Binding
-Explicit binding
-Implicit binding
-Default binding
-
-### Adding a method in Person (refer to prototype)
-
-`prototypes` are used to share properties and methods across the instances
-prototypal inheritance
-
-```js
-Person.prototype.sayMyName = sayMyName
-```
+##### The `this` keyword refers to different objects depending on how it is used
+- When used within a method of an object, `this` points to that object.
+- When used by itself, `this` points to the global object.
+- Within a function, `this` typically points to the global object.
+- In a function under strict mode, `this` becomes undefined.
+- During an event, `this` points to the element that triggered the event.
+- Methods such as `call()`, `apply()`, and `bind()` can reassign `this` to any desired object

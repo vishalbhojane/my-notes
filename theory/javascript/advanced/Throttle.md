@@ -3,13 +3,14 @@ Throttling limits the execution of your code to once in every specified time int
 ```js
 function throttle(fn, delay) {
     let isTimerActive = false
-    let context = this;
-    
+
     return function (...args) {
+	    const context = this;
+	    
         if (!isTimerActive) {
             fn.call(context, ...args)
             isTimerActive = true
-            
+
             setTimeout(function () {
                 isTimerActive = false
             }, delay)
@@ -22,12 +23,16 @@ Implementation using `Date()`
 
 ```js
 function throttle(fn, delay) {
-    let lastEventTime = 0;
+    let lastEventTime = 0
+    
     return function (...args) {
-        let currentEventTime = new Date().getTime()
-        if (currentEventTime - lastEventTime < delay) return
-        lastEventTime = currentEventTime
-        fn(...args)
+        const currentEventTime = new Date().getTime()
+        const context = this;
+
+        if (currentEventTime - lastEventTime > delay) {
+            fn.call(context, ...args)
+            lastEventTime = currentEventTime
+        }
     }
 }
 ```
@@ -41,10 +46,20 @@ const throttledLogClick = throttle(logClick, 1000)
 document.body.addEventListener('click', throttledLogClick)
 ```
 
+With Arguments
+
+```js
+const logClick = (name) => console.log('click ' + name)
+const debouncedLogClick = debounce(logClick, 1000)
+
+document.body.addEventListener('click', () => { debouncedLogClick('vishal') })
+```
+
 Object Method
 
 ```js
-// using regular function here because, arrow function do not have their own 'this', they return the value of this where they are written
+// using regular function, because arrow function don't have their own 'this'
+// they return the value of 'this' where they are written
 function logClick() {
     console.log('click ' + this.fullName)
 }

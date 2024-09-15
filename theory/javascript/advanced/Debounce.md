@@ -3,11 +3,14 @@ DE bouncing delays the execution of your code until the user stops performing a 
 ```js
 function debounce(fn, delay) {
     let timeoutId;
-    return function () {
+    
+    return function (...args) {
         const context = this
+        
         clearTimeout(timeoutId)
+        
         timeoutId = setTimeout(function () {
-            fn.call(context)
+            fn.call(context, ...args)
         }, delay)
     }
 }
@@ -31,10 +34,11 @@ const debouncedLogClick = debounce(logClick, 1000)
 document.body.addEventListener('click', () => { debouncedLogClick('vishal') })
 ```
 
-Object Methods
+Inside Object Method
 
 ```js
-// using regular function here because, arrow function do not have their own 'this', they return the value of this where they are written
+// using regular function, because arrow function don't have their own 'this'
+// they return the value of 'this' where they are written
 function logClick() {
     console.log('click ' + this.fullName)
 }
@@ -45,10 +49,9 @@ const person = {
 }
 
 const debouncedLogClick = person.sayName.bind(person)
+
 // document.body.addEventListener('click', () => { debouncedLogClick('vishal') })
-
 // or 
-
 document.body.addEventListener('click', () => { person.sayName() })
 ```
 

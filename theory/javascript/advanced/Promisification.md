@@ -1,6 +1,6 @@
-Promisification is the process of converting a callback-based function into a promise-based one
+Promisification is the process of converting a call-back-based function into a [[notes/theory/javascript/advanced/Promise|Promise]]-based one
 
-Callback
+Call-back
 
 ```js
 function loadScript(src, callback) {
