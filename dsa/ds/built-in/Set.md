@@ -37,7 +37,7 @@ set.has(4)
 set.delete(4)
 
 // to check size of the set
-set.size()
+set.size
 
 // to remove all the valuew
 set.clear()

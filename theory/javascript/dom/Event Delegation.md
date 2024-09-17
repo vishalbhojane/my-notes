@@ -39,10 +39,10 @@ document.querySelector("#form").addEventListener('keyup', (e) => {
 })
 ```
 
-### benefits
+### Benefits
 saves memory by attaching less event handlers
 writing less code
 `dom` manipulation - tough to add event listener to newly added child (eg. in infinite scroll we keep adding new child)
 
-### cons
+### Cons
 all events are not bubbled up: blur, focus, scroll

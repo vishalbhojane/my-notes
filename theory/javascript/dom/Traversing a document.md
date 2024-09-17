@@ -1,6 +1,6 @@
 Traversing the DOM refers to the process of navigating through the different elements in an HTML document using JavaScript
 
-to traverse the `document` we have we have `parentElement`, `children`, `nextElementSibling`, `previousElementSibling`
+To traverse the `document` we have we have `parentElement`, `children`, `nextElementSibling`, `previousElementSibling`
 <div class="grandparent">
     <div class="parent">
         <div class="children"></div>

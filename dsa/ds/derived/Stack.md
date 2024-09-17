@@ -245,3 +245,4 @@ console.log(stack.isEmpty()); // Output: true
 ```
 
 This implementation uses an object to store the stack elements, with the count serving as both the size of the stack and the key for the next element. This approach can be more memory-efficient for large stacks and provides constant-time O(1) performance for push and pop operations.
+

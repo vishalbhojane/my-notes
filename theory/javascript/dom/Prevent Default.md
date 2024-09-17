@@ -12,7 +12,7 @@ form.addEventListener("submit", e => {
 });
 ```
 
-more ex
+More ex
 
 ```js
 const link = document.querySelector("a");

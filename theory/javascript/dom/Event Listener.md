@@ -4,7 +4,7 @@ An event listener is a function in JavaScript that waits for an event to occur t
 const btn = document.querySelector(".btn");
 ```
 
-adding an event listener
+Adding an event listener
 
 ```js
 btn.addEventListener('click', () => {
@@ -16,9 +16,9 @@ btn.addEventListener('click', () => {
 })
 ```
 
-above both will work in the order they are added, they will not overwrite each other
+Above both will work in the order they are added, they will not overwrite each other
 
-removing an event listener
+Removing an event listener
 
 ```js
 function printClick() {
@@ -35,7 +35,7 @@ btn.addEventListener("click", event => {
 })
 ```
 
-input events
+Input events
 
 ```js
 const input = document.querySelector("[data-input-text]");
@@ -55,7 +55,7 @@ input.addEventListener("input", e => {
 })
 ```
 
-form events
+Form events
 
 ```js
 const form = document.querySelector("[data-form]")

@@ -42,7 +42,7 @@ map.has('a')
 map.delete('c')
 
 // size
-map.size()
+map.size
 
 // delete all keys
 map.clear()
