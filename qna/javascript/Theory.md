@@ -55,3 +55,23 @@ Accessible throughout its containing scope
 Function Expression
 Only the variable (foo) is hoisted; calling foo() before the assignment results in an error
 The function is defined only after the assignment, affecting its availability in the scope
+
+##### Explain `Function.call` and `Function.apply` and differences
+##### Explain `Function.prototype.bind`
+[[Call Apply Bind]]
+
+##### Difference between feature detection, feature inference, and using UA string
+[[Polyfills]]
+UA string: Identifying the browser based on the user agent string. `navigator.userAgent`
+Feature detection is generally the most reliable approach
+
+##### Explain hoisting
+[[Hoisting]]
+
+##### Type Coercion
+[[Type Coercion]]
+
+##### Event Bubbling, Capturing
+[[Bubble and Capture]]
+
+
