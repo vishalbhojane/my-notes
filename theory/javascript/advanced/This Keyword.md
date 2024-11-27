@@ -47,7 +47,7 @@ class MyClass {
     }
 }
 
-const test = MyClass.method();
+const test = MyClass.method;
 test()
 // undefined
 ```

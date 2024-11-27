@@ -13,12 +13,12 @@ note: both web apps should have different origins e.g. a.com and b.com
 ---
 ### Steps
 
-When domain A request resourses from B, generally CORS preflight mechnism is followed
-a preflight options call is made before the actual api call is made
+When domain A request resources from B, generally CORS pre-flight mechanism is followed
+a pre-flight options call is made before the actual API call is made
 server / domain B will check the options and verify it
-afer verification server / domain B will send the addition headers
+after verification server / domain B will send the addition headers
 `Accept-Control-Allow-Origin: * `
-any domian can all to call 
+any domain is allowed to call 
 
 `Accept-Control-Allow-Origin: https://vishal.com`
 only `https://vishal.com` can access 

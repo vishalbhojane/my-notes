@@ -75,13 +75,13 @@ document.querySelector("input")
 to be more explicit, selecting text type
 
 ```js
-document.querySelector("input [type='text']")
+document.querySelector("input[type='text']")
 ```
 
 to be moe explicit, select inside body
 
 ```js
-document.querySelector("body > input [type='text']")
+document.querySelector("body > input[type='text']")
 ```
 
 `querySelectorAll()`
