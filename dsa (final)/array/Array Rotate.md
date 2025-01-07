@@ -1,70 +1,77 @@
-The function rotate modifies an array (nums) by rotating its elements to the right by k steps.
-
+The function rotate modifies an array (`nums`) by rotating its elements to the right by `k` steps.
 It does so in-place without allocating extra space.
 
-
-
-Constraints:
-
+**Constraints:**
 The array can be empty or contain any number of elements.
-
 The array contains integers.
-
 The value of k can be positive, negative, or zero.
 
-
-
 Parameters:
-
-nums: An array of integers to be rotated.
-
-k: An integer representing the number of steps to rotate the array to the right.
-
-
+`nums`: An array of integers to be rotated.
+`k`: An integer representing the number of steps to rotate the array to the right.
 
 Returns:
-
-The function does not return anything; it modifies the input array (nums) in-place.
-
-
+The function does not return anything; it modifies the input array (`nums`) in-place.
 
 Examples:
 
 Basic Example
 
+```js
 let arr = [1, 2, 3, 4, 5];
 rotate(arr, 1);
 // After rotation, arr should be [5, 1, 2, 3, 4]
+```
+
 Rotate by Array Length
 
+```js
 let arr = [1, 2, 3];
 rotate(arr, 3);
 // After rotation, arr should be [1, 2, 3]
+```
+
 Rotate by Zero
 
+```js
 let arr = [4, 3, 2, 1];
 rotate(arr, 0);
 // After rotation, arr should be [4, 3, 2, 1]
+```
+
 Empty Array
 
+```js
 let arr = [];
 rotate(arr, 1);
 // After rotation, arr should be []
+```
+
 Negative k Value
 
+```js
 let arr = [5, 6, 7, 8];
 rotate(arr, -1);
 // After rotation, arr should be [6, 7, 8, 5]
+```
+
 Array with All Same Elements
 
+```js
 let arr = [2, 2, 2, 2];
 rotate(arr, 2);
 // After rotation, arr should be [2, 2, 2, 2]
+```
+
 k Larger Than Array Size
 
+```js
 let arr = [1, 2];
 rotate(arr, 3);
 // After rotation, arr should be [2, 1]
+```
+
+##### Solution
 
 ```js
 function rotate(nums, k) {

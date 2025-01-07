@@ -1,11 +1,11 @@
 ##### Event delegation
-[[Event Delegation]]
+[[12. Event Delegation]]
 
 ##### Explain how this works in JavaScript
-[[This Keyword]]
+[[34. This Keyword]]
 
 ##### Explain how prototypal inheritance works
-[[Inheritance]]
+[[20. Inheritance]]
 
 ##### What is the difference between a variable that is: `null`, `undefined` or undeclared?
 `null`: Explicitly assigned to represent no value.
@@ -58,20 +58,20 @@ The function is defined only after the assignment, affecting its availability in
 
 ##### Explain `Function.call` and `Function.apply` and differences
 ##### Explain `Function.prototype.bind`
-[[Call Apply Bind]]
+[[25. Call Apply Bind]]
 
 ##### Difference between feature detection, feature inference, and using UA string
-[[Polyfills]]
+[[08. Polyfills]]
 UA string: Identifying the browser based on the user agent string. `navigator.userAgent`
 Feature detection is generally the most reliable approach
 
 ##### Explain hoisting
-[[Hoisting]]
+[[18. Hoisting]]
 
 ##### Type Coercion
-[[Type Coercion]]
+[[15. Type Coercion]]
 
 ##### Event Bubbling, Capturing
-[[Bubble and Capture]]
+[[11. Bubble and Capture]]
 
 
